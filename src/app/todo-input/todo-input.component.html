@@ -1,0 +1,18 @@
+<form
+  (ngSubmit)="notify.emit({ input: input_todo.value }); input_todo.value = ''"
+  class="mb-3"
+>
+  <input
+    placeholder=" Enter text to make a Todo."
+    #input_todo
+    type="text"
+    class="form-control mb-2"
+  />
+  <button
+    type="button"
+    (click)="notify.emit({ input: input_todo.value }); input_todo.value = ''"
+    class="container--add button btn btn-primary"
+  >
+    Add
+  </button>
+</form>

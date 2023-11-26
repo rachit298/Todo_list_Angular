@@ -1,0 +1,38 @@
+<div class="container--todolist">
+  <h4>{{ list_type === "current" ? "Todos" : "Finished" }} list</h4>
+
+  <div
+    *ngFor="let todo of todos"
+    class="container--todolist row text-center mb-3"
+  >
+    <ng-container
+      *ngIf="list_type === 'current'; then current; else finished"
+    ></ng-container>
+
+    <ng-template #current>
+      <input class="col" (click)="notifyForFilter.emit({todo})" type="checkbox" />
+    </ng-template>
+
+    <ng-template #finished>
+      <input class="col" (click)="notifyForUndo.emit({todo})" checked type="checkbox" />
+    </ng-template>
+
+    <p class="col">{{ todo.description }}</p>
+    <button 
+      (click)="notifyForDelete.emit({ todo, todoCat: list_type! })"
+      class="container--delete button btn btn-danger mx-1 col"
+    >
+      Delete
+    </button>
+
+    <a class="col" *ngIf="list_type === 'current'" routerLink="/edit/{{ todo.id }}">
+      <button
+        (click)="notifyForEdit.emit({todo})"
+        class="container--edit button btn btn-info"
+      >
+        Edit
+      </button>
+    </a>
+  </div>
+</div>
+<br />

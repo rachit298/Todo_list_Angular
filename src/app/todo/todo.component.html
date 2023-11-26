@@ -1,0 +1,102 @@
+<div class="container-sm mt-4">
+  <div>
+    <div>
+      <h4>Todo List</h4>
+    </div>
+
+    <!-- <div class="container--input">
+      <input placeholder=" Enter text..." #input_todo type="text" />
+      <button
+        type="button"
+        (click)="addTodo(input_todo.value); input_todo.value = ''"
+        class="container--add button"
+      >
+        Add
+      </button>
+    </div> -->
+
+    <app-todo-input (notify)="addTodo($event)"></app-todo-input>
+
+    <!-- <div class="container--todolist">
+      <h4>Todos list</h4>
+      <div *ngFor="let todo of todos"
+      class="container--todolist">
+        <input (click)="filterTodo(todo)" type="checkbox" />
+        <p>{{ todo.description }}</p>
+        <button
+          (click)="deleteTodo(todo, 'current')"
+          class="container--delete button"
+        >
+          Delete
+        </button>
+        <a routerLink="/edit/{{ todo.id }}">
+          <button (click)="updateTodo(todo)" class="container--edit button">
+            Edit
+          </button>
+        </a>
+      </div>
+    </div> -->
+
+    <!-- <div class="container--finishedlist">
+      <h4>Finished List</h4>
+      <div *ngFor="let ftodo of finishedTodos">
+        <input (click)="undoTodo(ftodo)" type="checkbox" checked />
+        <p>{{ ftodo.description }}</p>
+        <button
+          (click)="deleteTodo(ftodo, 'finished')"
+          class="container--delete button"
+        >
+          Delete
+        </button>
+      </div>
+    </div> -->
+
+    <!-- <app-todo-list
+      [todos]="todos"
+      list_type="current"
+      (notifyForFilter)="filterTodo($event)"
+      (notifyForDelete)="deleteTodo($event)"
+      (notifyForUpdate)="updateTodo($event)"
+    ></app-todo-list>
+
+    <app-todo-list
+      [todos]="finishedTodos"
+      list_type="finished"
+      (notifyForUndo)="undoTodo($event)"
+      (notifyForDelete)="deleteTodo($event)"
+    ></app-todo-list> -->
+
+    <!-- <ng-container *ngFor="let list of lists | keyvalue">
+      <ng-template [ngIf]="list.key === 'current'" [ngIfElse]="finished">
+        <app-todo-list
+          [list]="list"
+          (notifyForFilter)="filterTodo($event)"
+          (notifyForDelete)="deleteTodo($event)"
+          (notifyForUpdate)="updateTodo($event)"
+        >
+        </app-todo-list>
+      </ng-template>
+
+      <ng-template #finished>
+        <app-todo-list
+          [list]="list"
+          (notifyForUndo)="undoTodo($event)"
+          (notifyForDelete)="deleteTodo($event)"
+        >
+        </app-todo-list>
+      </ng-template>
+    </ng-container> -->
+
+    <app-todo-list
+      *ngFor="let list of lists | keyvalue"
+      [list]="list"
+      (notifyForFilter)="filterTodo($event)"
+      (notifyForDelete)="deleteTodo($event)"
+      (notifyForUpdate)="updateTodo($event)"
+      (notifyForUndo)="undoTodo($event)"
+    ></app-todo-list>
+  </div>
+</div>
+
+<!-- (notifyForUndo)="undoTodo($event)"
+      (notifyForDelete)="deleteTodo($event)" -->

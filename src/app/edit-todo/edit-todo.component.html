@@ -1,0 +1,16 @@
+<div class="edit--container form-group" *ngIf="todo">
+  <input
+    class="form-control"
+    type="text"
+    id="todo-desc"
+    [(ngModel)]="todo.description"
+  />
+  <br />
+  <button
+    class="button btn btn-primary"
+    (click)="updateTodo(todo)"
+    type="button"
+  >
+    Update and go back
+  </button>
+</div>
